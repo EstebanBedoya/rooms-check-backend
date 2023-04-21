@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './models/user.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { UserDocument } from './schema/user.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
+  constructor(@InjectModel('User') private userModule: Model<UserDocument>) {}
+
   private readonly users = [
     {
       userId: 1,
